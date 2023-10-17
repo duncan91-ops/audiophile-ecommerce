@@ -1,0 +1,25 @@
+services:
+  client:
+    build:
+      context: ./
+      dockerfile: Dockerfile 
+    restart: on-failure
+    volumes:
+      - .:/app
+      - /app/node_modules
+    networks:
+      - audiophile-net
+  
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile 
+    restart: always
+    ports:
+      - "8081:80"
+    networks:
+      - audiophile-net
+
+networks:
+  audiophile-net:
+    driver: bridge
