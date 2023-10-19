@@ -73,7 +73,7 @@ export default function Header() {
                 return (
                   <li key={category.id} className={styles.nav__item}>
                     <Link
-                      href={`/${category.name}`}
+                      href={`/categories/${category.name}`}
                       className={styles.nav__link}
                     >
                       {category.name}

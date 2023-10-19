@@ -15,7 +15,7 @@ export default function Menu({ close }: { close?: () => void }) {
           return (
             <li key={id} className={styles.item}>
               <Link
-                href={`/${name}`}
+                href={`/categories/${name}`}
                 className={styles.link}
                 onClick={(e) => {
                   close && close();

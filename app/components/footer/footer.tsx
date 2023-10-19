@@ -35,7 +35,10 @@ export default function Footer() {
             {categories.map(({ id, name }) => {
               return (
                 <li key={id} className={styles.nav__item}>
-                  <Link href={`/${name}`} className={styles.nav__link}>
+                  <Link
+                    href={`/categories/${name}`}
+                    className={styles.nav__link}
+                  >
                     {name}
                   </Link>
                 </li>
