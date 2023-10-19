@@ -55,6 +55,111 @@
   padding-bottom: 12rem;
 }
 
+.showcase {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+
+  .one {
+    height: 60rem;
+    background: url("./assets/images/mobile/image-speaker-zx9.png") center top
+        5.7rem / 17.2rem 20.7rem no-repeat,
+      url("./assets/icons/pattern-circles.svg") center -13rem / cover no-repeat,
+      var(--color-primary);
+    border-radius: 8px;
+    padding-top: 29.4rem;
+
+    &__content {
+      width: 86%;
+      max-width: 34.9rem;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2.4rem;
+    }
+
+    &__name {
+      display: flex;
+      flex-direction: column;
+      color: var(--color-light-primary);
+      font-size: 3.6rem;
+      line-height: 4rem;
+      font-weight: 700;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    &__msg {
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 1.5rem;
+      font-weight: 500;
+      line-height: 2.5rem;
+      text-align: center;
+    }
+
+    &__btn {
+      color: var(--color-light-primary);
+      background-color: var(--color-dark-primary);
+      transition: 0.3s background-color ease-in;
+
+      &:hover {
+        background-color: #4c4c4c;
+      }
+    }
+  }
+
+  .two {
+    height: 32rem;
+    background: url("./assets/images/mobile/image-speaker-zx7.jpg") center /
+      cover no-repeat;
+    border-radius: 8px;
+  }
+
+  .two,
+  .three__content {
+    display: flex;
+    align-items: center;
+    padding-left: 2.4rem;
+  }
+
+  .two__content,
+  .three__details {
+    display: flex;
+    flex-direction: column;
+    gap: 3.2rem;
+  }
+
+  .two__name,
+  .three__name {
+    font-size: 2.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--color-dark-primary);
+    text-transform: uppercase;
+  }
+
+  .three {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+
+    &__hero {
+      height: 20rem;
+      background: url("./assets/images/mobile/image-earphones-yx1.jpg") center /
+        cover no-repeat;
+      border-radius: 8px;
+    }
+
+    &__content {
+      height: 20rem;
+      background-color: var(--color-light-tertiary);
+      border-radius: 8px;
+    }
+  }
+}
+
 @media screen and (min-width: 768px) {
   .hero {
     margin-bottom: 14.8rem;
@@ -81,6 +186,53 @@
   .content {
     padding-bottom: 9.6rem;
     row-gap: 9.6rem;
+  }
+
+  .showcase {
+    gap: 3.2rem;
+
+    .one {
+      background: url("./assets/images/tablet/image-speaker-zx9.png") center top
+          5.2rem / 19.7rem 23.7rem no-repeat,
+        url("./assets/icons/pattern-circles.svg") center -10rem / cover no-repeat,
+        var(--color-primary);
+      height: 72rem;
+      padding-top: 35.3rem;
+
+      &__name {
+        font-size: 5.6rem;
+        line-height: 5.8rem;
+        letter-spacing: 2px;
+      }
+
+      &__msg {
+        margin-bottom: 1.6rem;
+      }
+    }
+
+    .two {
+      background: url("./assets/images/tablet/image-speaker-zx7.jpg") center /
+        cover no-repeat;
+      padding-left: 6.3rem;
+    }
+
+    .three {
+      flex-direction: row;
+      justify-content: space-between;
+
+      &__hero {
+        width: 100%;
+        height: 32rem;
+        background: url("./assets/images/tablet/image-earphones-yx1.jpg") center /
+          cover no-repeat;
+      }
+
+      &__content {
+        width: 100%;
+        height: 32rem;
+        padding-left: 4.1rem;
+      }
+    }
   }
 }
 
@@ -109,5 +261,43 @@
   .content {
     padding-bottom: 20rem;
     row-gap: 20rem;
+  }
+
+  .showcase {
+    gap: 4.8rem;
+
+    .one {
+      background: url("./assets/images/desktop/image-speaker-zx9.png") left
+          11.75rem bottom -1.5rem / 41rem 49.3rem no-repeat,
+        url("./assets/icons/pattern-circles.svg") -20rem -5rem / cover no-repeat,
+        var(--color-primary);
+      height: 56rem;
+      display: flex;
+      flex-direction: row-reverse;
+      padding: 13.3rem 9.5rem 0 0;
+
+      &__content {
+        margin: 0;
+      }
+    }
+
+    .two {
+      background: url("./assets/images/desktop/image-speaker-zx7.jpg") center /
+        cover no-repeat;
+    }
+
+    .two,
+    .three__content {
+      padding-left: 9.5rem;
+    }
+
+    .three {
+      gap: 3rem;
+
+      &__hero {
+        background: url("./assets/images/desktop/image-earphones-yx1.jpg")
+          center / cover no-repeat;
+      }
+    }
   }
 }
