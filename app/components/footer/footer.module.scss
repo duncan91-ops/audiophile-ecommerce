@@ -1,0 +1,169 @@
+.footer {
+  padding-bottom: 3.8rem;
+  background-color: var(--color-dark-secondary);
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 4.8rem;
+  justify-items: center;
+}
+
+.divider {
+  width: 10.1rem;
+  height: 4px;
+  background-color: var(--color-primary);
+}
+
+.logo {
+  &__link {
+    path {
+      transition: 0.3s fill ease-in;
+    }
+
+    &:hover {
+      path {
+        fill: var(--color-primary);
+      }
+    }
+  }
+}
+
+.nav {
+  &__items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.6rem;
+  }
+
+  &__item {
+    font-size: 1.3rem;
+    line-height: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  &__link {
+    color: var(--color-light-primary);
+    transition: 0.3s color ease-in;
+
+    &:hover {
+      color: var(--color-primary);
+    }
+  }
+}
+
+.message,
+.copyright {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.5rem;
+  line-height: 2.5rem;
+}
+
+.message {
+  font-weight: 500;
+  text-align: center;
+}
+
+.copyright {
+  font-weight: 700;
+}
+
+.socials {
+  width: 10.4rem;
+  height: 2.4rem;
+
+  &__items {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__link {
+    path {
+      transition: 0.3s fill ease-in;
+    }
+
+    &:hover {
+      path {
+        fill: var(--color-primary);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .footer {
+    padding-bottom: 4.6rem;
+  }
+
+  .content {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 3.2rem;
+    justify-items: start;
+  }
+
+  .divider,
+  .logo,
+  .nav,
+  .message {
+    grid-column: 1 / span 2;
+  }
+
+  .divider {
+    margin-bottom: 2.4rem;
+  }
+
+  .nav {
+    &__items {
+      flex-direction: row;
+      gap: 3.4rem;
+    }
+  }
+
+  .message {
+    margin-bottom: 4.8rem;
+    text-align: left;
+  }
+
+  .socials {
+    justify-self: end;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .footer {
+    padding-bottom: 4.8rem;
+  }
+
+  .content {
+    row-gap: 3.6rem;
+  }
+
+  .divider {
+    margin-bottom: 3.5rem;
+  }
+
+  .logo {
+    grid-column: 1 / span 1;
+  }
+
+  .nav {
+    grid-column: 2 / span 1;
+    justify-self: end;
+  }
+
+  .message {
+    grid-column: 1 / span 1;
+    margin-bottom: 2rem;
+  }
+
+  .socials {
+    grid-column: 2 / span 1;
+    grid-row: 3 / span 2;
+    align-self: center;
+  }
+}
