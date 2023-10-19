@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <section className={styles.hero}>
-        <div className="container">
+        <div className={`${styles.hero__container} container`}>
           <article className={styles.hero__content}>
             <p className={styles.hero__new}>new product</p>
             <h1 className={styles.hero__name}>XX99 Mark II HeadphoneS</h1>

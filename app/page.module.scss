@@ -1,13 +1,17 @@
 .hero {
   margin-bottom: 9.2rem;
   height: 51rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background: url("./assets/images/mobile/image-hero.jpg") center / contain
       no-repeat,
     #191919;
   text-align: center;
+
+  &__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
 
   &__content {
     width: 87.5%;
@@ -86,8 +90,11 @@
     background: url("./assets/images/desktop/image-hero.jpg") 60% 0px / contain
         no-repeat,
       #191919;
-    justify-content: start;
     text-align: left;
+
+    &__container {
+      justify-content: start;
+    }
 
     &__content {
       align-items: start;
