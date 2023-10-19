@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styles from "./page.module.scss";
-import { Menu } from "@/components";
+import { Caption, Menu } from "@/components";
 
 export default function Home() {
   return (
@@ -22,6 +22,7 @@ export default function Home() {
       </section>
       <section className={`${styles.content} container`}>
         <Menu />
+        <Caption />
       </section>
     </main>
   );

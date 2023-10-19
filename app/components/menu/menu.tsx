@@ -9,7 +9,7 @@ export default function Menu({ close }: { close?: () => void }) {
   const categories = getCategories();
 
   return (
-    <section className={styles.menu}>
+    <article className={styles.menu}>
       <ul className={styles.items}>
         {categories.map(({ id, name, image }) => {
           return (
@@ -46,6 +46,6 @@ export default function Menu({ close }: { close?: () => void }) {
           );
         })}
       </ul>
-    </section>
+    </article>
   );
 }
