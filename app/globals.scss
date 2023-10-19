@@ -65,6 +65,9 @@ button {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &__primary {
     background-color: var(--color-primary);
