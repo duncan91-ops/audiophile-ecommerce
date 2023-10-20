@@ -4,4 +4,9 @@
   line-height: 2.5rem;
   color: rgba(0, 0, 0, 0.5);
   text-transform: capitalize;
+  transition: 0.3s color ease-in;
+
+  &:hover {
+    color: var(--color-primary);
+  }
 }
