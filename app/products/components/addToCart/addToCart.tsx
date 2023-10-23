@@ -2,8 +2,15 @@
 
 import { useState, MouseEventHandler } from "react";
 import styles from "./addToCart.module.scss";
+import cartService from "@/services/cartService";
 
-export default function AddToCart({ productId }: { productId: number }) {
+export default function AddToCart({
+  productId,
+  productPrice,
+}: {
+  productId: number;
+  productPrice: number;
+}) {
   const [quantity, setQuantity] = useState<number>(1);
 
   const subtract: MouseEventHandler<HTMLButtonElement> = () => {
@@ -23,34 +30,7 @@ export default function AddToCart({ productId }: { productId: number }) {
   };
 
   const addToCart = () => {
-    let cartString = localStorage.getItem("cart");
-    let cart = JSON.parse(cartString || "[]") as {
-      id: number;
-      quantity: number;
-    }[];
-
-    if (cart.length == 0) {
-      localStorage.setItem(
-        "cart",
-        JSON.stringify([{ id: productId, quantity }])
-      );
-    } else {
-      const found = cart.find(({ id }) => {
-        id === productId;
-      });
-
-      if (found) {
-        cart = cart.map((cartItem) => {
-          if (cartItem.id === productId) {
-            cartItem.quantity += quantity;
-          }
-          return cartItem;
-        });
-      } else {
-        cart.push({ id: productId, quantity });
-      }
-      localStorage.setItem("cart", JSON.stringify(cart));
-    }
+    cartService.addItem(productId, quantity, productPrice * quantity);
 
     setQuantity(1);
   };

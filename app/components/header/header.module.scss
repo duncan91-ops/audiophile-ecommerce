@@ -53,17 +53,6 @@
   position: relative;
 }
 
-.cart {
-  position: absolute;
-  top: 2.4rem;
-  right: 0;
-  background-color: var(--color-light-primary);
-  border-radius: 8px;
-  padding: 3.1rem 2.8rem;
-  width: 100%;
-  max-width: 37.7rem;
-}
-
 @media screen and (min-width: 768px) {
   .header {
     border-bottom: none;
@@ -117,6 +106,12 @@
       &:hover {
         color: var(--color-primary);
       }
+    }
+  }
+
+  .options {
+    &__menu {
+      display: none;
     }
   }
 

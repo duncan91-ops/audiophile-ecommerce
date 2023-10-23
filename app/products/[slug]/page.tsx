@@ -70,7 +70,7 @@ export default function Product({ params }: { params: { slug: string } }) {
                   $ {product.price.toLocaleString()}
                 </p>
               </div>
-              <AddToCart productId={product.id} />
+              <AddToCart productId={product.id} productPrice={product.price} />
             </div>
             <div className={styles.product__features}>
               <h3 className={styles.title}>features</h3>

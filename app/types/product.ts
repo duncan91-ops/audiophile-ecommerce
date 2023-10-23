@@ -2,6 +2,7 @@ export type Product = {
   id: number;
   slug: string;
   name: string;
+  shortName: string;
   image: {
     mobile: string;
     tablet: string;
@@ -13,6 +14,7 @@ export type Product = {
     tablet: string;
     desktop: string;
   };
+  cartImage: string;
   new: boolean;
   price: number;
   description: string;

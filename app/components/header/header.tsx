@@ -5,6 +5,7 @@ import Link from "next/link";
 import styles from "./header.module.scss";
 import { getCategories } from "@/utils/getCategories";
 import Menu from "../menu/menu";
+import Cart from "../cart/cart";
 
 export default function Header() {
   const categories = getCategories();
@@ -22,11 +23,13 @@ export default function Header() {
   const toggleMenu: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.stopPropagation();
     setMenuOpen(!menuOpen);
+    setCartOpen(false);
   };
 
   const toggleCart: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.stopPropagation();
     setCartOpen(!cartOpen);
+    setMenuOpen(false);
   };
 
   return (
@@ -94,36 +97,35 @@ export default function Header() {
           </button>
         </section>
       </header>
-      {(menuOpen || cartOpen) && (
+      {menuOpen && (
+        <section
+          className={`${styles.options} ${styles.options__menu}`}
+          onClick={() => {
+            closeMenu();
+          }}
+        >
+          <article
+            className={styles.menu}
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+          >
+            <div className="container">
+              <Menu close={closeMenu} />
+            </div>
+          </article>
+        </section>
+      )}
+      {cartOpen && (
         <section
           className={styles.options}
           onClick={() => {
-            closeMenu();
             closeCart();
           }}
         >
-          {menuOpen && (
-            <article
-              className={styles.menu}
-              onClick={(e) => {
-                e.stopPropagation();
-              }}
-            >
-              <div className="container">
-                <Menu close={closeMenu} />
-              </div>
-            </article>
-          )}
-          {cartOpen && (
-            <div className={`${styles.cart_box} container`}>
-              <article
-                className={styles.cart}
-                onClick={(e) => {
-                  e.stopPropagation();
-                }}
-              ></article>
-            </div>
-          )}
+          <div className={`${styles.cart_box} container`}>
+            <Cart />
+          </div>
         </section>
       )}
     </>
