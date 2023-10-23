@@ -37,30 +37,21 @@ export default function Product({ params }: { params: { slug: string } }) {
           <article className={styles.product__content}>
             <div className={styles.product__details}>
               <div className={styles.product__img}>
-                <div className={styles.container}>
-                  {/* <Image
+                <picture>
+                  <source
+                    media="(min-width: 1280px)"
+                    srcSet={product.image.desktop}
+                  />
+                  <source
+                    media="(min-width: 768px)"
+                    srcSet={product.image.tablet}
+                  />
+                  <img
+                    className={styles.img}
                     src={product.image.mobile}
                     alt="product image"
-                    className={styles.img}
-                    fill
-                    object-fit="contain"
-                  /> */}
-                  <picture>
-                    <source
-                      media="(min-width: 1280px)"
-                      srcSet={product.image.desktop}
-                    />
-                    <source
-                      media="(min-width: 768px)"
-                      srcSet={product.image.tablet}
-                    />
-                    <img
-                      className={styles.img}
-                      src={product.image.mobile}
-                      alt="product image"
-                    />
-                  </picture>
-                </div>
+                  />
+                </picture>
               </div>
               <div className={styles.product__info}>
                 {product.new && <p className={styles.new}>new product</p>}
@@ -70,7 +61,11 @@ export default function Product({ params }: { params: { slug: string } }) {
                   $ {product.price.toLocaleString()}
                 </p>
               </div>
-              <AddToCart productId={product.id} productPrice={product.price} />
+              <AddToCart
+                productId={product.id}
+                productPrice={product.price}
+                productName={product.name}
+              />
             </div>
             <div className={styles.product__features}>
               <h3 className={styles.title}>features</h3>
@@ -158,23 +153,21 @@ export default function Product({ params }: { params: { slug: string } }) {
                 return (
                   <div className={styles.other} key={other.slug}>
                     <div className={styles.other__img}>
-                      <div className={styles.container}>
-                        <picture>
-                          <source
-                            media="(min-width: 1280px)"
-                            srcSet={other.image.desktop}
-                          />
-                          <source
-                            media="(min-width: 768px)"
-                            srcSet={other.image.tablet}
-                          />
-                          <img
-                            className={styles.img}
-                            src={other.image.mobile}
-                            alt="product alternative image"
-                          />
-                        </picture>
-                      </div>
+                      <picture>
+                        <source
+                          media="(min-width: 1280px)"
+                          srcSet={other.image.desktop}
+                        />
+                        <source
+                          media="(min-width: 768px)"
+                          srcSet={other.image.tablet}
+                        />
+                        <img
+                          className={styles.img}
+                          src={other.image.mobile}
+                          alt="product alternative image"
+                        />
+                      </picture>
                     </div>
                     <h4 className={styles.other__name}>{other.name}</h4>
                     <Link

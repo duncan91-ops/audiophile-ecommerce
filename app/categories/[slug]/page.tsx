@@ -39,14 +39,14 @@ export default function Category({ params }: { params: { slug: string } }) {
                   <picture>
                     <source
                       media="(min-width: 1280px)"
-                      srcSet={product.image.desktop}
+                      srcSet={product.categoryImage.desktop}
                     />
                     <source
                       media="(min-width: 768px)"
-                      srcSet={product.image.tablet}
+                      srcSet={product.categoryImage.tablet}
                     />
                     <img
-                      src={product.image.mobile}
+                      src={product.categoryImage.mobile}
                       alt="product image"
                       className={styles.img}
                     />
