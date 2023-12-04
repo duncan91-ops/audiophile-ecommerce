@@ -1,0 +1,58 @@
+.summary {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 3.2rem;
+
+  &__title {
+    color: var(--color-dark-primary);
+    text-transform: uppercase;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 1.286px;
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  &__total,
+  &__shipping,
+  &__vat,
+  &__grand_total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__vat {
+    margin-bottom: 1.6rem;
+  }
+
+  &__grand_total {
+    .summary__value {
+      color: var(--color-primary);
+    }
+  }
+
+  &__label {
+    color: rgba(0, 0, 0, 0.5);
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 2.5rem;
+  }
+
+  &__value {
+    color: var(--color-dark-primary);
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
+}

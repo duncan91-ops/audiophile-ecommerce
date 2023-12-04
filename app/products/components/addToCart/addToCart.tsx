@@ -2,7 +2,8 @@
 
 import { useState, MouseEventHandler, useEffect, useRef } from "react";
 import styles from "./addToCart.module.scss";
-import cartService from "@/services/cartService";
+import { useAppDispatch } from "@/store";
+import { addCartItem } from "@/cart";
 
 export default function AddToCart({
   productId,
@@ -13,7 +14,9 @@ export default function AddToCart({
   productPrice: number;
   productName: string;
 }) {
+  const dispatch = useAppDispatch();
   const [quantity, setQuantity] = useState<number>(1);
+  const [message, setMessage] = useState<string>("");
   const [showMessage, setShowMessage] = useState<boolean>(false);
   const timerId = useRef<number>();
 
@@ -46,9 +49,17 @@ export default function AddToCart({
   };
 
   const addToCart = () => {
-    cartService.addItem(productId, quantity, productPrice * quantity);
+    dispatch(
+      addCartItem({
+        productId,
+        quantity,
+        total: productPrice * quantity,
+      })
+    );
 
     setQuantity(1);
+    setMessage(`${productName} added to cart!`);
+    setShowMessage(true);
   };
 
   return (
@@ -67,14 +78,11 @@ export default function AddToCart({
         className="btn btn__primary"
         onClick={() => {
           addToCart();
-          setShowMessage(true);
         }}
       >
         add to cart
       </button>
-      {showMessage && (
-        <p className={styles.msg}>{productName} added to cart!</p>
-      )}
+      {showMessage && <p className={styles.msg}>{message}</p>}
     </div>
   );
 }

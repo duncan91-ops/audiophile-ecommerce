@@ -1,16 +1,22 @@
 "use client";
 
-import { useState, MouseEventHandler } from "react";
+import { useState, MouseEventHandler, useEffect } from "react";
 import Link from "next/link";
 import styles from "./header.module.scss";
 import { getCategories } from "@/utils/getCategories";
 import Menu from "../menu/menu";
-import Cart from "../cart/cart";
+import { Cart, getCart } from "@/cart";
+import { useAppDispatch } from "@/store";
 
 export default function Header() {
-  const categories = getCategories();
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const [cartOpen, setCartOpen] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
+  const categories = getCategories();
+
+  useEffect(() => {
+    dispatch(getCart());
+  }, [dispatch]);
 
   const closeMenu = () => {
     setMenuOpen(false);
@@ -124,7 +130,7 @@ export default function Header() {
           }}
         >
           <div className={`${styles.cart_box} container`}>
-            <Cart />
+            <Cart close={closeCart} />
           </div>
         </section>
       )}
