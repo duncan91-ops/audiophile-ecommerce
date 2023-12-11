@@ -1,6 +1,6 @@
+import styles from "./summary.module.scss";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import styles from "./summary.module.scss";
 import { selectAllCartItemIds } from "@/cart";
 import { RootState } from "@/store";
 import SummaryItem from "../summaryItem/summaryItem";

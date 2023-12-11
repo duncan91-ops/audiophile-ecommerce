@@ -1,33 +1,60 @@
 "use client";
 
-import styles from "./page.module.scss";
-import { Summary } from "./components";
-import { Back } from "@/components";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import styles from "./page.module.scss";
+import { Summary } from "./components";
+import { Back } from "@/components";
 
 const schema = yup
   .object({
-    name: yup.string().required(),
-    email: yup.string().email().required(),
-    phone: yup.string().required(),
-    address: yup.string().required(),
-    zip: yup.number().required(),
-    city: yup.string().required(),
-    country: yup.string().required(),
-    method: yup.string().required(),
-    number: yup.number().positive().optional(),
-    pin: yup.number().positive().optional(),
+    name: yup.string().required("required"),
+    email: yup.string().required("required").email("wrong format"),
+    phone: yup.string().required("required"),
+    address: yup.string().required("required"),
+    zip: yup
+      .string()
+      .required("required")
+      .test("number", "invalid input", (value, context) => Number(value) >= 0),
+    city: yup.string().required("required"),
+    country: yup.string().required("required"),
+    method: yup.string().required("required"),
+    number: yup.string().when("method", {
+      is: "emoney",
+      then: (schema) =>
+        schema
+          .required("required")
+          .test(
+            "number",
+            "invalid input",
+            (value, context) => Number(value) >= 0
+          ),
+    }),
+    pin: yup.string().when("method", {
+      is: "emoney",
+      then: (schema) =>
+        schema
+          .required("required")
+          .test(
+            "number",
+            "invalid input",
+            (value, context) => Number(value) >= 0
+          ),
+    }),
   })
   .required();
 
 export default function Checkout() {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitSuccessful },
     watch,
+    reset,
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
@@ -37,8 +64,13 @@ export default function Checkout() {
 
   const method = watch("method");
 
-  const onSubmit = handleSubmit((data) => {
-    console.log(data);
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    reset();
+  }, [isSubmitSuccessful, reset]);
+
+  const onSubmit = handleSubmit(() => {
+    router.push("/regards");
   });
 
   return (
@@ -50,7 +82,11 @@ export default function Checkout() {
             <h1 className={styles.title}>checkout</h1>
             <fieldset className={styles.billing}>
               <legend>billing details</legend>
-              <div className={`${styles.name} ${styles.input}`}>
+              <div
+                className={`${styles.name} ${styles.input} ${
+                  errors.name && styles.error
+                }`}
+              >
                 <label htmlFor="name">Name</label>
                 <input
                   type="text"
@@ -58,8 +94,15 @@ export default function Checkout() {
                   {...register("name")}
                   placeholder="Alexei Ward"
                 />
+                {errors.name && (
+                  <span className={styles.error}>{errors.name.message}</span>
+                )}
               </div>
-              <div className={`${styles.email} ${styles.input}`}>
+              <div
+                className={`${styles.email} ${styles.input} ${
+                  errors.email && styles.error
+                }`}
+              >
                 <label htmlFor="email">Email Address</label>
                 <input
                   type="text"
@@ -67,8 +110,15 @@ export default function Checkout() {
                   {...register("email")}
                   placeholder="alexei@mail.com"
                 />
+                {errors.email && (
+                  <span className={styles.error}>{errors.email.message}</span>
+                )}
               </div>
-              <div className={`${styles.phone} ${styles.input}`}>
+              <div
+                className={`${styles.phone} ${styles.input} ${
+                  errors.phone && styles.error
+                }`}
+              >
                 <label htmlFor="phone">Phone Number</label>
                 <input
                   type="text"
@@ -76,11 +126,18 @@ export default function Checkout() {
                   {...register("phone")}
                   placeholder="+1 202-555-0136"
                 />
+                {errors.phone && (
+                  <span className={styles.error}>{errors.phone.message}</span>
+                )}
               </div>
             </fieldset>
             <fieldset className={styles.shipping}>
               <legend>shipping info</legend>
-              <div className={`${styles.address} ${styles.input}`}>
+              <div
+                className={`${styles.address} ${styles.input} ${
+                  errors.address && styles.error
+                }`}
+              >
                 <label htmlFor="address">Your Address</label>
                 <input
                   type="text"
@@ -88,8 +145,15 @@ export default function Checkout() {
                   {...register("address")}
                   placeholder="1137 Williams Avenue"
                 />
+                {errors.address && (
+                  <span className={styles.error}>{errors.address.message}</span>
+                )}
               </div>
-              <div className={`${styles.zip} ${styles.input}`}>
+              <div
+                className={`${styles.zip} ${styles.input} ${
+                  errors.zip && styles.error
+                }`}
+              >
                 <label htmlFor="zip">ZIP Code</label>
                 <input
                   type="text"
@@ -97,8 +161,15 @@ export default function Checkout() {
                   {...register("zip")}
                   placeholder="10001"
                 />
+                {errors.zip && (
+                  <span className={styles.error}>{errors.zip.message}</span>
+                )}
               </div>
-              <div className={`${styles.city} ${styles.input}`}>
+              <div
+                className={`${styles.city} ${styles.input} ${
+                  errors.city && styles.error
+                }`}
+              >
                 <label htmlFor="city">City</label>
                 <input
                   type="text"
@@ -106,8 +177,15 @@ export default function Checkout() {
                   {...register("city")}
                   placeholder="New York"
                 />
+                {errors.city && (
+                  <span className={styles.error}>{errors.city.message}</span>
+                )}
               </div>
-              <div className={`${styles.country} ${styles.input}`}>
+              <div
+                className={`${styles.country} ${styles.input} ${
+                  errors.address && styles.error
+                }`}
+              >
                 <label htmlFor="country">Country</label>
                 <input
                   type="text"
@@ -115,6 +193,9 @@ export default function Checkout() {
                   {...register("country")}
                   placeholder="United States"
                 />
+                {errors.country && (
+                  <span className={styles.error}>{errors.country.message}</span>
+                )}
               </div>
             </fieldset>
             <fieldset className={styles.payment}>
@@ -140,7 +221,11 @@ export default function Checkout() {
               </div>
               {method === "emoney" ? (
                 <div className={styles.emoney}>
-                  <div className={`${styles.number} ${styles.input}`}>
+                  <div
+                    className={`${styles.number} ${styles.input} ${
+                      errors.number && styles.error
+                    }`}
+                  >
                     <label htmlFor="number">e-Money Number</label>
                     <input
                       type="text"
@@ -148,8 +233,17 @@ export default function Checkout() {
                       {...register("number")}
                       placeholder="238521993"
                     />
+                    {errors.number && (
+                      <span className={styles.error}>
+                        {errors.number.message}
+                      </span>
+                    )}
                   </div>
-                  <div className={`${styles.pin} ${styles.input}`}>
+                  <div
+                    className={`${styles.pin} ${styles.input} ${
+                      errors.pin && styles.error
+                    }`}
+                  >
                     <label htmlFor="pin">e-Money Pin</label>
                     <input
                       type="text"
@@ -157,6 +251,9 @@ export default function Checkout() {
                       {...register("pin")}
                       placeholder="6891"
                     />
+                    {errors.pin && (
+                      <span className={styles.error}>{errors.pin.message}</span>
+                    )}
                   </div>
                 </div>
               ) : (

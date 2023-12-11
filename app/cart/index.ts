@@ -4,6 +4,7 @@ import cartReducer, {
   selectAllCartItemIds,
   selectCartItemById,
   resetCart,
+  removeAllCartItems,
 } from "./cartSlice";
 import { Cart } from "./components";
 
@@ -12,6 +13,7 @@ export {
   addCartItem,
   getCart,
   resetCart,
+  removeAllCartItems,
   selectAllCartItemIds,
   selectCartItemById,
   Cart,

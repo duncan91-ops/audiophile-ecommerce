@@ -1,0 +1,137 @@
+.regards {
+  width: 100%;
+  min-height: 100%;
+  background-color: transparent;
+  position: relative;
+  padding: 22.4rem 0 20rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__content {
+    width: 32.7rem;
+    // position: absolute;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
+    padding: 3.2rem;
+    background-color: var(--color-light-primary);
+    border-radius: 8px;
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 2.3rem;
+  }
+}
+
+.message {
+  &__title {
+    margin-bottom: 1.6rem;
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 2.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.857px;
+    color: var(--color-dark-primary);
+  }
+
+  &__content {
+    font-size: 1.5rem;
+    line-height: 2.5rem;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+.details {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-radius: 8px;
+  overflow: hidden;
+
+  &__main {
+    padding: 2.4rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 1.2rem;
+    background-color: var(--color-light-tertiary);
+
+    .divider {
+      width: 100%;
+      height: 1px;
+      background-color: var(--color-dark-primary);
+      opacity: 0.08;
+    }
+
+    .remaining {
+      justify-self: center;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--color-dark-primary);
+      opacity: 0.5;
+      letter-spacing: -0.214px;
+    }
+  }
+
+  &__sub {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 0.8rem;
+    padding: 1.5rem 2.4rem 1.9rem;
+    background-color: var(--color-dark-primary);
+
+    .label {
+      font-size: 1.5rem;
+      font-weight: 500;
+      line-height: 2.5rem;
+      color: var(--color-light-primary);
+      opacity: 0.5;
+      text-transform: uppercase;
+    }
+
+    .value {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--color-light-primary);
+    }
+  }
+}
+
+.btn {
+  &__home {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .regards {
+    &__content {
+      width: 54rem;
+      padding: 4.8rem;
+      row-gap: 3.3rem;
+    }
+  }
+
+  .message {
+    &__title {
+      font-size: 3.2rem;
+      line-height: 3.6rem;
+      letter-spacing: 1.143px;
+    }
+  }
+
+  .details {
+    margin-bottom: 1.3rem;
+    grid-template-columns: 24.6rem 19.8rem;
+
+    &__sub {
+      padding: 0 3.2rem;
+      align-content: center;
+    }
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .details {
+    margin-bottom: 1.5rem;
+  }
+}
